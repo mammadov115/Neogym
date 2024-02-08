@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 LOCAL_APPS = [
     "app.apps.AppConfig",
-    "api.apps.ApiConfig"
+    "api.apps.ApiConfig",
+    "accounts.apps.AccountsConfig"
 ]
 
 THIRD_PARTY_APPS = [
@@ -135,3 +136,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "accounts.User"
+
