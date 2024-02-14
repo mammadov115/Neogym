@@ -37,7 +37,7 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-
+    "rest_framework"
 ]
 
 INSTALLED_APPS = [
@@ -139,3 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
 
+# drf confs
+
+REST_FRAMEWORK = {
+    "NON_FIELD_ERRORS_KEY": "errors"
+}
