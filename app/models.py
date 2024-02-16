@@ -6,13 +6,16 @@ class Slider(models.Model):
     title = models.CharField(max_length=150)
     text = models.TextField()
 
+
 class WhyChooseUs(models.Model):
     title = models.CharField(max_length=250)
     text = models.TextField()
 
+
 class HealthySection(models.Model):
     title = models.CharField(max_length=250)
     text = models.TextField()
+
 
 class TrainerSection(models.Model):
     name = models.CharField(max_length=50)

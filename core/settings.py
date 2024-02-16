@@ -37,7 +37,9 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "rest_framework"
+    "rest_framework",
+    "rest_framework.authtoken",
+    # "admin_reorder"
 ]
 
 INSTALLED_APPS = [
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -140,7 +143,45 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.User"
 
 # drf confs
-
 REST_FRAMEWORK = {
-    "NON_FIELD_ERRORS_KEY": "errors"
+    "NON_FIELD_ERRORS_KEY": "errors",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+         "rest_framework.authentication.TokenAuthentication",
+         "rest_framework_simplejwt.authentication.JWTAuthentication"
+
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    )
+    
 }
+
+#admin reorder 
+# ADMIN_REORDER = (
+#     "sites",
+#     {
+#         "app": "auth", "models": ["auth.Group"],
+#     },
+#     {
+#         "app": "accounts", "models": ["accounts.User"]
+#     },
+#     {
+#         "app": "app", "models": [
+#             "app.Slider",
+#             "app.WhyChooseUs",
+#             "app.HealthySection",
+#             "app.TrainerSection",
+#             "app.ContactSection",
+#             "app.Messages",
+#             "app.InfoSection"
+#         ]
+#     },
+#     {
+#         "app": "rest_framework.authtoken",
+#         "models": [
+#             "rest_framework.authtoken.Token"
+#         ]
+#     }
+
+# )
