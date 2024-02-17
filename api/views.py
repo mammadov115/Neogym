@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 
 from .serializers import *
+from app.models import *
+from accounts.tokens import create_jwt_pair_for_user
 
 from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
@@ -10,7 +12,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 
-from app.models import *
 
 # Create your views here.
 class SignUpView(generics.GenericAPIView):
@@ -39,12 +40,14 @@ class LoginView(APIView):
         password = request.data.get("password")
 
         user = authenticate(email=email, password=password)
-        print(user)
 
         if user is not None:
+
+            tokens = create_jwt_pair_for_user(user)
+
             response = {
                 "message": "Login successful",
-                "data": user.auth_token.key
+                "tokens": tokens
             }
 
             return Response(data=response, status=status.HTTP_200_OK)
@@ -94,11 +97,11 @@ class ContactSectionViewSet(viewsets.ModelViewSet):
 
 class MessagesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Messages
+    queryset = Messages.objects.all()
     serializer_class = MessagesSerializer
 
 
 class InfoSectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = InfoSection
-    serializer_class = InfoSectionSerializer
+    queryset = InfoSection.objects.all()
+    serializer_class = InfoSectionSerializer()
