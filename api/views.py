@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 
+from drf_yasg.utils import swagger_auto_schema
 
 # Create your views here.
 class SignUpView(generics.GenericAPIView):
@@ -79,19 +80,19 @@ class WhyChooseUsViewSet(viewsets.ModelViewSet):
 
 class HealthySectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = HealthySection
+    queryset = HealthySection.objects.all()
     serializer_class = HealthySectionSerializer
 
 
 class TrainerSectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = TrainerSection
+    queryset = TrainerSection.objects.all()
     serializer_class = TrainerSectionSerializer
 
 
 class ContactSectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = ContactSection
+    queryset = ContactSection.objects.all()
     serializer_class = ContactSectionSerializer
 
 
