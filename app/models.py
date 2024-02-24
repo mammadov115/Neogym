@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.db import models
 
 # Create your models here.
@@ -5,7 +6,15 @@ from django.db import models
 class Slider(models.Model):
     title = models.CharField(max_length=150)
     text = models.TextField()
+    separated_title = models.TextField(help_text=("For slider title."))
 
+    def __str__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        self.separated_title = str(self.title.split())
+        return super().save(*args, **kwargs)
+    
 
 class WhyChooseUs(models.Model):
     title = models.CharField(max_length=250)

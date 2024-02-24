@@ -105,4 +105,4 @@ class MessagesViewSet(viewsets.ModelViewSet):
 class InfoSectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = InfoSection.objects.all()
-    serializer_class = InfoSectionSerializer()
+    serializer_class = InfoSectionSerializer
