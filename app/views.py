@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from .models import *
+from textwrap import wrap
 
 # Create your views here.
+def title_list(title, n=3):
+    title = title.split()
+    list = [' '.join(title[i:i+3]) for i in range(0,len(title),3)]
+    
+
+    
+
+
 
 def home(request):
     slider = Slider.objects.all()
