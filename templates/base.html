@@ -31,7 +31,7 @@
  {% comment %} if not home page you must add this : {% block sub_page %}class="sub_page"{% endblock %} {%endcomment %}
   <body {% block sub_page %}{% endblock %}> 
     
-    <div class="hero_area">
+    <div class="hero_area" style="background-image: url('../static/images/trainer-bg.jpg')">
       {% include "partials/navbar.html" %}
       {% block slider %}{% endblock %}
     </div>
