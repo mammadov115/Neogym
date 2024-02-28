@@ -5,9 +5,14 @@ from .models import *
 
 @admin.register(SectionImages)
 class SectionImagesAdmin(admin.ModelAdmin):
-    readonly_fields = ["title"]
+    fields = ["image"]
     list_display = ["title"]
 
+    def has_add_permission(self, request):
+        return False
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(Slider)

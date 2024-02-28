@@ -5,10 +5,13 @@ from django.db import models
 # Create your models here.
 class SectionImages(models.Model):
     title = models.CharField(max_length=150)
-    image = models.ImageField(max_length=150, null=True)
+    image = models.ImageField(upload_to=f"section-images/" ,max_length=150, null=True)
 
     def __str__(self) -> str:
         return self.title
+
+    class Meta:
+        ordering = ['id']
 
 
 class Slider(models.Model):
@@ -16,7 +19,6 @@ class Slider(models.Model):
     second_title = models.CharField(max_length=150)
     third_title = models.CharField(max_length=150)
     text = models.TextField()
-    bg_image = models.ImageField(upload_to="hero-area/", height_field=887, width_field=1600, null=True)
 
     def __str__(self):
         return f'{self.first_title} {self.second_title} {self.third_title}'
