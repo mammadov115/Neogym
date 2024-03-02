@@ -5,20 +5,21 @@ from .models import *
 
 @admin.register(SectionImages)
 class SectionImagesAdmin(admin.ModelAdmin):
-    fields = ["image"]
-    list_display = ["title"]
 
     def has_add_permission(self, request):
-        return False
+        is_empty = SectionImages.objects.count() == 0
+        return True if is_empty else False
     
-    def has_delete_permission(self, request, obj=None):
-        return False
-
 
 admin.site.register(Slider)
 admin.site.register(WhyChooseUs)
-admin.site.register(HealthySection)
+
+@admin.register(HealthySection)
+class HealthySectionAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        is_empty = HealthySection.objects.count() == 0
+        return True if is_empty else False
+
 admin.site.register(TrainerSection)
-admin.site.register(ContactSection)
 admin.site.register(Messages)
 admin.site.register(InfoSection)

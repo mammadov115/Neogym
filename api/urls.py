@@ -29,7 +29,6 @@ router.register("slider", views.SliderViewset, basename="slider")
 router.register("why-choose-us", views.WhyChooseUsViewSet, basename="why-choose-us"),
 router.register("healthy-section", views.HealthySectionViewSet, basename="healthy-section"),
 router.register("trainer-section", views.TrainerSectionViewSet, basename="trainer-section"),
-router.register("contact-section", views.ContactSectionViewSet, basename="contact-section"),
 router.register("messages", views.MessagesViewSet, basename="messages"),
 router.register("info-section", views.InfoSectionViewSet, basename="info-section"),
 

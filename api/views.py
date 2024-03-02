@@ -90,12 +90,6 @@ class TrainerSectionViewSet(viewsets.ModelViewSet):
     serializer_class = TrainerSectionSerializer
 
 
-class ContactSectionViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = ContactSection.objects.all()
-    serializer_class = ContactSectionSerializer
-
-
 class MessagesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Messages.objects.all()

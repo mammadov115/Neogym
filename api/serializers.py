@@ -59,12 +59,6 @@ class TrainerSectionSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ContactSectionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ContactSection
-        fields = "__all__"
-
-
 class MessagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages

@@ -5,24 +5,11 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    def set_titles(apps, schema_editor):
-
-        titles = [
-            "Hero Section",
-            "Us Section",
-            "Healthy Section",
-            "Trainer Section",
-        ]
-
-        SectionImages = apps.get_model("app", "SectionImages")
-
-        for title in titles:
-            SectionImages.objects.create(title=title)
 
     dependencies = [
         ('app', '0006_sectionimages'),
     ]
 
     operations = [
-        migrations.RunPython(set_titles),
+        # migrations.RunPython(),
     ]
