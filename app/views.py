@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from typing import Any
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.views.generic import RedirectView
+from django.urls import reverse
+
 
 # Create your views here.
 def home(request):
@@ -11,6 +15,7 @@ def home(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Message successfully sended.")
+            return redirect("redirect")
 
 
 
@@ -30,3 +35,8 @@ def trainers(request):
 
 def contact_us(request):
     return render(request, template_name="contact.html")
+
+
+class ViewMessageRedirectView(RedirectView):
+    def get_redirect_url(self, *args: Any, **kwargs: Any) -> str | None:
+        return reverse("home") + "#contact"
