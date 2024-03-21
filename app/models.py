@@ -70,7 +70,9 @@ class Messages(models.Model):
 
 class InfoSection(models.Model):
     location = models.CharField(max_length=250)
-    phonr_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20)
     email = models.EmailField()
     footer_text = models.TextField()
 
+    def __str__(self) -> str:
+        return "Info Section"

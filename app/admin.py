@@ -1,6 +1,10 @@
+from typing import Any
 from django.contrib import admin
+from django.http import HttpRequest
 from .models import *
 # Register your models here.
+
+
 
 
 @admin.register(SectionImages)
@@ -22,4 +26,12 @@ class HealthySectionAdmin(admin.ModelAdmin):
 
 admin.site.register(TrainerSection)
 admin.site.register(Messages)
-admin.site.register(InfoSection)
+
+
+@admin.register(InfoSection)
+class InfoSectionAdmin(admin.ModelAdmin):
+    
+    def has_add_permission(self, request: HttpRequest) -> bool:
+        if InfoSection.objects.count() == 0:
+            return True
+

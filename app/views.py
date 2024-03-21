@@ -6,19 +6,15 @@ from django.contrib import messages
 from django.views.generic import RedirectView
 from django.urls import reverse
 
-
 # Create your views here.
 def home(request):
     if request.method == "POST":
         form = MessageForm(request.POST)
-        print(request)
         if form.is_valid():
             form.save()
             messages.success(request, "Message successfully sended.")
             return redirect("redirect")
-
-
-
+    
     slider = Slider.objects.all()
     section_images = SectionImages.objects.first()
     wcu_section = WhyChooseUs.objects.all()
@@ -28,13 +24,24 @@ def home(request):
     return render(request, template_name="index.html", context=locals())
  
 def why_us(request):
-    return render(request, template_name="why.html")
+    wcu_section = WhyChooseUs.objects.all()
+    return render(request, template_name="why.html", context=locals())
 
 def trainers(request):
-    return render(request, template_name="trainer.html")
+    trainers = TrainerSection.objects.all()
+
+    return render(request, template_name="trainer.html", context=locals())
 
 def contact_us(request):
-    return render(request, template_name="contact.html")
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Message successfully sended.")
+            return render(request, template_name="contact.html", context=locals())
+
+    form = MessageForm()
+    return render(request, template_name="contact.html", context=locals())
 
 
 class ViewMessageRedirectView(RedirectView):

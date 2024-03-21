@@ -8,169 +8,19 @@
 
 {% block content %}
   <!-- Us section -->
-
-  <section class="us_section layout_padding" style="background-image: url({{ section_images.us_section.url }})">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Why Choose Us
-        </h2>
-      </div>
-
-      <div class="us_container ">
-        <div class="row">
-          {% for item in wcu_section %}
-            <div class="col-lg-3 col-md-6">
-              <div class="box">
-                <div class="img-box">
-                  <img src="{{item.image.url}}" alt="{{item.title}}">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    {{ item.title }}
-                  </h5>
-                  <p>
-                    {{ item.text }}
-                  </p>
-                </div>
-              </div>
-            </div>  
-          {% endfor %}        
-        </div>
-      </div>
-    </div>
-  </section>
-
+  {% include "sections/us.html" %}
   <!-- end us section -->
 
 
   <!-- heathy section -->
-
-  <section class="heathy_section layout_padding" style="background-image: url({{ section_images.healthy_section.url }})">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-md-12 mx-auto">
-          <div class="detail-box">
-            <h2>
-              {{ h_section.title }}
-            </h2>
-            <p>
-              {{ h_section.text }}
-            </p>
-            <div class="btn-box">
-              <a href="{% url "contact-us" %}">
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
+  {% include "sections/healthy.html" %}
   <!-- end heathy section -->
 
   <!-- trainer section -->
-
-  <section class="trainer_section layout_padding" style="background-image: url({{ section_images.trainer_section.url }})">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Our Gym Trainers
-        </h2>
-      </div>
-      <div class="row">
-        {% for trainer in trainers %}
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <div class="box">
-              <div class="name">
-                <h5>
-                  {{ trainer.name }}
-                </h5>
-              </div>
-              <div class="img-box">
-                <img src="{{ trainer.image.url }}" alt="{{ trainer.name }}">
-              </div>
-              <div class="social_box">
-                {% if trainer.fb_link %}
-                  <a href="{{trainer.fb_link}}">
-                    <img src="/static/images/facebook-logo.png" alt="{{ trainer.name }}'s Facebook Account">
-                  </a>
-                {% endif %}
-                {% if trainer.tw_link %}
-                  <a href="{{ trainer.tw_link }}">
-                    <img src="/static/images/twitter.png" alt="{{ trainer.name }}'s Twitter Account">
-                  </a>
-                {% endif %}
-                {% if trainer.ig_link %}
-                  <a href="{{ trainer.ig_link }}">
-                    <img src="/static/images/instagram-logo.png" alt="{{ trainer.name }}'s Instagram Account">
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
+  {% include "sections/trainer.html" %}
   <!-- end trainer section -->
 
   <!-- contact section -->
-
-  <section class="contact_section" id="contact">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 px-0">
-          <div class="img-box">
-            <img src="{{ section_images.contact_section.url }}" alt="Contact Us">
-          </div>
-        </div>
-        <div class="col-lg-5 col-md-6">
-          <div class="form_container pr-0 pr-lg-5 mr-0 mr-lg-2">
-            <div class="heading_container">
-              <h2>
-                Contact Us
-              </h2>
-            </div>
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert alert-success" role="alert">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-            <form method="post" >
-              {% csrf_token %}
-              <div>
-                {{ form.name }}
-              </div>
-              <div>
-                {{ form.email }}
-              </div>
-              <div>
-                {{ form.phone_number }}
-              </div>
-              <div>
-                {{ form.message }}
-              </div>
-              <div class="d-flex ">
-                <button type="submit">
-                  Send
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
+  {% include "sections/contact.html" %}
   <!-- end contact section -->
 {% endblock %}

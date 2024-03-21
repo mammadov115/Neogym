@@ -1,0 +1,42 @@
+<section class="trainer_section layout_padding" style="background-image: url({{ section_images.trainer_section.url }})">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        Our Gym Trainers
+      </h2>
+    </div>
+    <div class="row">
+      {% for trainer in trainers %}
+        <div class="col-lg-4 col-md-6 mx-auto">
+          <div class="box">
+            <div class="name">
+              <h5>
+                {{ trainer.name }}
+              </h5>
+            </div>
+            <div class="img-box">
+              <img src="{{ trainer.image.url }}" alt="{{ trainer.name }}">
+            </div>
+            <div class="social_box">
+              {% if trainer.fb_link %}
+                <a href="{{trainer.fb_link}}">
+                  <img src="/static/images/facebook-logo.png" alt="{{ trainer.name }}'s Facebook Account">
+                </a>
+              {% endif %}
+              {% if trainer.tw_link %}
+                <a href="{{ trainer.tw_link }}">
+                  <img src="/static/images/twitter.png" alt="{{ trainer.name }}'s Twitter Account">
+                </a>
+              {% endif %}
+              {% if trainer.ig_link %}
+                <a href="{{ trainer.ig_link }}">
+                  <img src="/static/images/instagram-logo.png" alt="{{ trainer.name }}'s Instagram Account">
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
