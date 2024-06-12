@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 # Create your models here.
 class SectionImages(models.Model):
@@ -63,6 +64,8 @@ class Messages(models.Model):
     email = models.EmailField(max_length=100)
     phone_number = models.CharField(max_length=200)
     message = models.TextField()
+    sended_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self) -> str:
         return self.name
@@ -72,7 +75,7 @@ class InfoSection(models.Model):
     location = models.CharField(max_length=250)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
-    footer_text = models.TextField()
+    footer_text = CKEditor5Field("Text", config_name="extends")
 
     def __str__(self) -> str:
         return "Info Section"

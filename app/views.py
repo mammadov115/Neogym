@@ -21,15 +21,17 @@ def home(request):
     h_section = HealthySection.objects.first()
     trainers = TrainerSection.objects.all()
     form = MessageForm()
+    nav_home_active = True
     return render(request, template_name="index.html", context=locals())
  
 def why_us(request):
     wcu_section = WhyChooseUs.objects.all()
+    nav_why_active = True
     return render(request, template_name="why.html", context=locals())
 
 def trainers(request):
     trainers = TrainerSection.objects.all()
-
+    nav_trainer_active = True
     return render(request, template_name="trainer.html", context=locals())
 
 def contact_us(request):
@@ -38,8 +40,8 @@ def contact_us(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Message successfully sended.")
-            return render(request, template_name="contact.html", context=locals())
-
+            return redirect(reverse("contact-us"))
+    nav_contact_active = True
     form = MessageForm()
     return render(request, template_name="contact.html", context=locals())
 
